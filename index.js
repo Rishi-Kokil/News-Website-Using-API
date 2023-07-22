@@ -56,3 +56,29 @@ function fillDataInCards(cardClone , element){
     })
 
 }
+
+const searchBtn = document.querySelector(".search-button");
+searchBtn.addEventListener("click" , ()=>{
+    let inputQuery = document.querySelector(".news-input").value;
+    if(inputQuery != ""){
+        fetchNews(inputQuery);
+    }
+})
+let currentActive = -1;
+
+function Buttonclick(query){
+    fetchNews(query);
+    if(currentActive == -1){
+        document.getElementById(query).classList.add("active")
+        currentActive = query;
+    }
+    else{
+        document.getElementById(currentActive).classList.remove("active");
+        currentActive = query;
+        document.getElementById(query).classList.add("active")
+    }
+}
+const alink = document.querySelector(".company-logo")
+alink.onclick = ()=>{
+    fetchNews("India");
+}
